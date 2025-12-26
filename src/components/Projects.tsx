@@ -2,6 +2,28 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Github, Folder } from "lucide-react";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -50,88 +72,157 @@ const Projects = () => {
             transition={{ duration: 0.6 }}
             className="mb-16"
           >
-            <span className="text-primary font-mono text-sm mb-4 block">// Projects</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <motion.span 
+              className="text-primary font-mono text-sm mb-4 block"
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.2 }}
+            >
+              // Projects
+            </motion.span>
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 }}
+            >
               Featured Work
-            </h2>
-            <p className="text-muted-foreground max-w-2xl">
+            </motion.h2>
+            <motion.p 
+              className="text-muted-foreground max-w-2xl"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.4 }}
+            >
               A selection of projects that showcase my skills and passion for building
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* Featured Projects */}
-          <div className="space-y-8 mb-16">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="space-y-8 mb-16"
+          >
             {featuredProjects.map((project, index) => (
               <motion.article
                 key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card-glass rounded-2xl p-6 md:p-8 hover-lift group"
+                variants={cardVariants}
+                whileHover={{ 
+                  y: -5,
+                  boxShadow: "0 25px 50px -12px hsl(175 80% 50% / 0.15)",
+                  borderColor: "hsl(175 80% 50% / 0.3)"
+                }}
+                className="card-glass rounded-2xl p-6 md:p-8 group border border-transparent cursor-pointer"
               >
                 <div className="flex flex-col md:flex-row md:items-start gap-6">
                   <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-4">
-                      <Folder className="text-primary" size={20} />
+                    <motion.div 
+                      className="flex items-center gap-3 mb-4"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={isInView ? { x: 0, opacity: 1 } : {}}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                    >
+                      <motion.div
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <Folder className="text-primary" size={20} />
+                      </motion.div>
                       <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
                         {project.title}
                       </h3>
-                    </div>
+                    </motion.div>
                     <p className="text-muted-foreground mb-6 leading-relaxed">
                       {project.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((t) => (
-                        <span
+                    <motion.div 
+                      className="flex flex-wrap gap-2"
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.5 + index * 0.1 }}
+                    >
+                      {project.tech.map((t, techIndex) => (
+                        <motion.span
                           key={t}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                          transition={{ delay: 0.6 + index * 0.1 + techIndex * 0.05 }}
+                          whileHover={{ scale: 1.1, backgroundColor: "hsl(175 80% 50% / 0.2)" }}
                           className="px-3 py-1 text-xs font-mono rounded-full bg-secondary text-muted-foreground"
                         >
                           {t}
-                        </span>
+                        </motion.span>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
                   <div className="flex gap-3 md:flex-col">
-                    <a
+                    <motion.a
                       href={project.github}
-                      className="p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary transition-all duration-300"
+                      className="p-3 rounded-lg border border-border hover:border-primary/50 transition-colors"
                       aria-label="View source code"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
                     >
                       <Github size={18} />
-                    </a>
-                    <a
+                    </motion.a>
+                    <motion.a
                       href={project.live}
-                      className="p-3 rounded-lg border border-border hover:border-primary/50 hover:bg-secondary transition-all duration-300"
+                      className="p-3 rounded-lg border border-border hover:border-primary/50 transition-colors"
                       aria-label="View live demo"
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      whileTap={{ scale: 0.9 }}
                     >
                       <ExternalLink size={18} />
-                    </a>
+                    </motion.a>
                   </div>
                 </div>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
 
           {/* Other Projects */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <span className="text-primary font-mono text-sm">{">"}</span>
+              <motion.span 
+                className="text-primary font-mono text-sm"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                {">"}
+              </motion.span>
               Other Noteworthy Projects
             </h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <motion.div 
+              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+            >
               {otherProjects.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.5 + index * 0.05 }}
-                  className="card-glass rounded-xl p-5 hover-lift group cursor-pointer"
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                  transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
+                  whileHover={{ 
+                    y: -8, 
+                    scale: 1.02,
+                    boxShadow: "0 20px 40px -15px hsl(175 80% 50% / 0.2)"
+                  }}
+                  className="card-glass rounded-xl p-5 group cursor-pointer border border-transparent hover:border-primary/30"
                 >
-                  <Folder className="text-primary mb-3" size={18} />
+                  <motion.div
+                    whileHover={{ rotate: 15, scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <Folder className="text-primary mb-3" size={18} />
+                  </motion.div>
                   <h4 className="font-medium mb-2 group-hover:text-primary transition-colors">
                     {project.title}
                   </h4>
@@ -144,7 +235,7 @@ const Projects = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
