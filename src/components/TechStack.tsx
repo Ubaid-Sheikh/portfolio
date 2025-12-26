@@ -1,24 +1,49 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
 const TechStack = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const technologies = [
-    { name: "MongoDB", category: "Database", color: "47A248" },
-    { name: "Express", category: "Backend", color: "000000" },
-    { name: "React", category: "Frontend", color: "61DAFB" },
-    { name: "Node.js", category: "Runtime", color: "339933" },
-    { name: "TypeScript", category: "Language", color: "3178C6" },
-    { name: "Next.js", category: "Framework", color: "000000" },
-    { name: "Tailwind CSS", category: "Styling", color: "06B6D4" },
-    { name: "Redux", category: "State", color: "764ABC" },
-    { name: "GraphQL", category: "API", color: "E10098" },
-    { name: "Docker", category: "DevOps", color: "2496ED" },
-    { name: "Git", category: "Version Control", color: "F05032" },
-    { name: "AWS", category: "Cloud", color: "FF9900" },
+    { name: "MongoDB", category: "Database" },
+    { name: "Express", category: "Backend" },
+    { name: "React", category: "Frontend" },
+    { name: "Node.js", category: "Runtime" },
+    { name: "TypeScript", category: "Language" },
+    { name: "Next.js", category: "Framework" },
+    { name: "Tailwind CSS", category: "Styling" },
+    { name: "Redux", category: "State" },
+    { name: "GraphQL", category: "API" },
+    { name: "Docker", category: "DevOps" },
+    { name: "Git", category: "Version Control" },
+    { name: "AWS", category: "Cloud" },
   ];
+
+  const mernStack = ["MongoDB", "Express", "React", "Node.js"];
 
   return (
     <section id="skills" className="py-24 md:py-32 bg-secondary/30" ref={ref}>
@@ -30,64 +55,152 @@ const TechStack = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <span className="text-primary font-mono text-sm mb-4 block">// Tech Stack</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <motion.span 
+              className="text-primary font-mono text-sm mb-4 block"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.2 }}
+            >
+              // Tech Stack
+            </motion.span>
+            <motion.h2 
+              className="text-3xl md:text-4xl font-bold mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
               Technologies I Work With
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p 
+              className="text-muted-foreground max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.4 }}
+            >
               A curated selection of tools and technologies I use to bring ideas to life
-            </p>
+            </motion.p>
           </motion.div>
 
           {/* MERN Highlight */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="card-glass rounded-2xl p-8 mb-12"
+            className="card-glass rounded-2xl p-8 mb-12 overflow-hidden relative"
           >
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <span className="text-primary font-mono text-lg">{"<"}</span>
-              <span className="text-xl font-bold">MERN Stack</span>
-              <span className="text-primary font-mono text-lg">{"/>"}</span>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {["MongoDB", "Express", "React", "Node.js"].map((tech, index) => (
-                <motion.div
-                  key={tech}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className="text-center group"
+            {/* Animated background gradient */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5"
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+            />
+            
+            <div className="relative z-10">
+              <motion.div 
+                className="flex items-center justify-center gap-2 mb-6"
+                initial={{ opacity: 0, y: -10 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4 }}
+              >
+                <motion.span 
+                  className="text-primary font-mono text-lg"
+                  animate={{ rotate: [0, 10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <div className="w-20 h-20 mx-auto mb-4 rounded-xl bg-background flex items-center justify-center border border-border group-hover:border-primary/50 transition-all duration-300 group-hover:glow-effect">
-                    <span className="text-2xl font-bold font-mono text-gradient">
-                      {tech[0]}
-                    </span>
-                  </div>
-                  <span className="font-medium">{tech}</span>
-                </motion.div>
-              ))}
+                  {"<"}
+                </motion.span>
+                <span className="text-xl font-bold">MERN Stack</span>
+                <motion.span 
+                  className="text-primary font-mono text-lg"
+                  animate={{ rotate: [0, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  {"/>"}
+                </motion.span>
+              </motion.div>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {mernStack.map((tech, index) => (
+                  <motion.div
+                    key={tech}
+                    initial={{ opacity: 0, y: 30, rotateX: -90 }}
+                    animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.5 + index * 0.15, type: "spring" }}
+                    className="text-center group"
+                  >
+                    <motion.div 
+                      className="w-20 h-20 mx-auto mb-4 rounded-xl bg-background flex items-center justify-center border border-border relative overflow-hidden"
+                      whileHover={{ 
+                        scale: 1.1,
+                        borderColor: "hsl(175 80% 50%)",
+                        boxShadow: "0 0 30px hsl(175 80% 50% / 0.3)"
+                      }}
+                    >
+                      <motion.div
+                        className="absolute inset-0 bg-primary/10"
+                        initial={{ y: "100%" }}
+                        whileHover={{ y: 0 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      <motion.span 
+                        className="text-2xl font-bold font-mono text-gradient relative z-10"
+                        whileHover={{ scale: 1.2 }}
+                      >
+                        {tech[0]}
+                      </motion.span>
+                    </motion.div>
+                    <motion.span 
+                      className="font-medium"
+                      whileHover={{ color: "hsl(175 80% 50%)" }}
+                    >
+                      {tech}
+                    </motion.span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
           {/* All Technologies Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {technologies.map((tech, index) => (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"
+          >
+            {technologies.map((tech) => (
               <motion.div
                 key={tech.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.03 }}
-                className="group"
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -5, 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="group cursor-pointer"
               >
-                <div className="card-glass rounded-xl p-4 text-center hover-lift h-full">
-                  <div className="text-xs text-primary font-mono mb-2">{tech.category}</div>
-                  <div className="font-medium text-sm">{tech.name}</div>
-                </div>
+                <motion.div 
+                  className="card-glass rounded-xl p-4 text-center h-full border border-transparent"
+                  whileHover={{ 
+                    borderColor: "hsl(175 80% 50% / 0.3)",
+                    boxShadow: "0 10px 30px -10px hsl(175 80% 50% / 0.2)"
+                  }}
+                >
+                  <motion.div 
+                    className="text-xs text-primary font-mono mb-2"
+                    initial={{ opacity: 0.7 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    {tech.category}
+                  </motion.div>
+                  <div className="font-medium text-sm group-hover:text-primary transition-colors">
+                    {tech.name}
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
