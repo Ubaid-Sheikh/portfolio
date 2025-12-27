@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import AnimatedBackground from "./AnimatedBackground";
+import TypingEffect from "./TypingEffect";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,6 +27,8 @@ const itemVariants = {
 };
 
 const Hero = () => {
+  const roles = ["MERN Developer", "Full-Stack Developer", "React Specialist", "Node.js Expert"];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <AnimatedBackground />
@@ -56,7 +59,7 @@ const Hero = () => {
             </motion.span>
           </motion.div>
 
-          {/* Main heading with letter animation */}
+          {/* Main heading with typing effect */}
           <motion.div variants={itemVariants}>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
               <motion.span 
@@ -65,16 +68,13 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                Hi, I'm{" "}
+                Hi, I'm a{" "}
               </motion.span>
-              <motion.span 
-                className="text-gradient font-mono inline-block"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.6, type: "spring", stiffness: 100 }}
-              >
-                Developer
-              </motion.span>
+              <br />
+              <TypingEffect 
+                words={roles}
+                className="text-gradient font-mono"
+              />
             </h1>
           </motion.div>
 

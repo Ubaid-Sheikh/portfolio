@@ -66,6 +66,20 @@
     font-family: 'Inter', sans-serif;
   }
 
+  /* Hide default cursor when custom cursor is active */
+  .cursor-none,
+  .cursor-none * {
+    cursor: none !important;
+  }
+
+  /* Show default cursor on touch devices */
+  @media (pointer: coarse) {
+    .cursor-none,
+    .cursor-none * {
+      cursor: auto !important;
+    }
+  }
+
   ::selection {
     @apply bg-primary/30 text-foreground;
   }
