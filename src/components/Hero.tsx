@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
-import AnimatedBackground from "./AnimatedBackground";
 import TypingEffect from "./TypingEffect";
+import AnimatedBackground from "./AnimatedBackground";
 
 const containerVariants = {
   hidden: { opacity: 0 },

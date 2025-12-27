@@ -62,8 +62,8 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
     cursor: none;
   }
 
@@ -119,8 +119,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
+    @apply bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent;
   }
 
   .glow-effect {
@@ -128,7 +127,29 @@
   }
 
   .card-glass {
-    @apply bg-card/50 backdrop-blur-xl border border-border/50;
+    @apply bg-card/50 backdrop-blur-sm border border-border;
+  }
+
+  .cursor-none {
+    cursor: none;
+  }
+
+  /* Subtle section backgrounds */
+  .section-bg-dots {
+    background-image: radial-gradient(circle at 1px 1px, hsl(175 80% 50% / 0.15) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  .section-bg-gradient {
+    background: radial-gradient(ellipse at top, hsl(175 80% 50% / 0.12), transparent 50%),
+      radial-gradient(ellipse at bottom, hsl(175 80% 50% / 0.08), transparent 50%);
+  }
+
+  .section-bg-lines {
+    background-image:
+      linear-gradient(90deg, hsl(175 80% 50% / 0.06) 1px, transparent 1px),
+      linear-gradient(hsl(175 80% 50% / 0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
 
   .hover-lift {

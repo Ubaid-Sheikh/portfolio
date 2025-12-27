@@ -4,7 +4,7 @@ import { Mail, MapPin, Github, Linkedin, ArrowUpRight } from "lucide-react";
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.3 });
 
   const socials = [
     { icon: Github, label: "GitHub", href: "https://github.com/Ubaid-Sheikh", handle: "@Ubaid-Sheikh" },
@@ -12,19 +12,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-secondary/30 relative overflow-hidden" ref={ref}>
-      {/* Animated background elements */}
-      <motion.div
-        className="absolute top-0 left-1/4 w-[300px] h-[300px] rounded-full bg-primary/5 blur-[100px]"
-        animate={{ y: [0, -30, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-1/4 w-[250px] h-[250px] rounded-full bg-primary/5 blur-[80px]"
-        animate={{ y: [0, 30, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-
+    <section id="contact" className="py-24 md:py-32 section-bg-gradient relative overflow-hidden" ref={ref}>
       <div className="container px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -76,16 +64,27 @@ const Contact = () => {
           >
             <motion.a
               href="mailto:ubaidsheikh700@gmail.com"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-medium rounded-xl relative overflow-hidden group"
-              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground font-medium rounded-xl relative overflow-hidden group transition-all duration-300"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 0 30px hsl(175 80% 50% / 0.5)"
+              }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.span
-                className="absolute inset-0 bg-foreground"
-                initial={{ x: "-100%", skewX: "-15deg" }}
-                whileHover={{ x: "100%" }}
-                transition={{ duration: 0.5 }}
+              {/* Animated gradient background */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{ backgroundSize: "200% 100%" }}
               />
+
               <Mail size={20} className="relative z-10" />
               <span className="relative z-10">ubaidsheikh700@gmail.com</span>
               <motion.span

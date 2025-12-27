@@ -1,10 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
@@ -12,7 +11,7 @@ const Navigation = () => {
       setIsScrolled(window.scrollY > 50);
 
       // Detect active section
-      const sections = ["about", "skills", "projects", "contact"];
+      const sections = ["about", "experience", "skills", "projects", "contact"];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -25,183 +24,288 @@ const Navigation = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
 
-  // Close mobile menu on scroll
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      const handleScroll = () => setIsMobileMenuOpen(false);
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, [isMobileMenuOpen]);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMenuOpen]);
 
   const navItems = [
     { label: "About", href: "#about" },
+    { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
   ];
 
-  return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-lg shadow-background/50"
-        : "bg-transparent"
-        }`}
-    >
-      <nav className="container px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.a
-            href="#"
-            className="font-mono text-lg font-bold"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.span
-              className="text-primary"
-              animate={{ rotate: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            >
-              {"<"}
-            </motion.span>
-            dev
-            <motion.span
-              className="text-primary"
-              animate={{ rotate: [0, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            >
-              {"/>"}
-            </motion.span>
-          </motion.a>
+  const handleNavClick = (href: string) => {
+    setIsMenuOpen(false);
+    // Small delay to let animation finish
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  };
 
-          {/* Desktop Navigation */}
-          <ul className="hidden lg:flex items-center gap-4 xl:gap-6">
-            {navItems.map((item, index) => {
-              const isActive = activeSection === item.href.slice(1);
-              return (
-                <motion.li
-                  key={item.label}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 + index * 0.1 }}
-                >
-                  <motion.a
-                    href={item.href}
-                    className={`text-sm transition-colors relative group py-2 ${isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                      }`}
-                    whileHover={{ y: -2 }}
-                  >
-                    <span className="text-primary font-mono text-xs mr-1">0{index + 1}.</span>
-                    {item.label}
-                    <motion.span
-                      className="absolute -bottom-0 left-0 h-px bg-primary"
-                      initial={{ width: isActive ? "100%" : 0 }}
-                      animate={{ width: isActive ? "100%" : 0 }}
-                      whileHover={{ width: "100%" }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </motion.a>
-                </motion.li>
-              );
-            })}
-            <motion.li
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.5 }}
+  return (
+    <>
+      <motion.header
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-lg border-b border-border/50" : "bg-transparent"
+          }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <nav className="container px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <motion.a
+              href="#"
+              className="flex items-center gap-1 text-xl font-bold group"
+              whileHover={{ scale: 1.05 }}
             >
+              <motion.span
+                className="text-primary font-mono"
+                animate={{ rotate: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                {"<"}
+              </motion.span>
+              <span>Ubaid</span>
+              <motion.span
+                className="text-primary font-mono"
+                animate={{ rotate: [0, -5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                {" />"}
+              </motion.span>
+            </motion.a>
+
+            <div className="flex items-center gap-4">
+              {/* Resume Button */}
               <motion.a
                 href="/resume.pdf"
                 target="_blank"
-                className="inline-flex items-center px-4 py-2 border border-primary text-primary text-sm rounded-lg relative overflow-hidden group isolate transition-all duration-300"
-                whileHover={{ scale: 1.05, backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex items-center gap-2 px-6 py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">
-                  Resume
-                </span>
+                Resume
               </motion.a>
-            </motion.li>
-          </ul>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className="lg:hidden p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-            whileTap={{ scale: 0.9 }}
+              {/* Unique Animated Hamburger Menu Button */}
+              <motion.button
+                className="relative z-50 w-12 h-12 flex items-center justify-center"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Toggle menu"
+              >
+                {/* Rotating ring */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-primary/30"
+                  animate={{ rotate: isMenuOpen ? 180 : 0 }}
+                  transition={{ duration: 0.5 }}
+                />
+
+                {/* Pulsing background */}
+                <motion.div
+                  className="absolute inset-2 rounded-full bg-primary/10"
+                  animate={{
+                    scale: isMenuOpen ? [1, 1.2, 1] : 1,
+                    opacity: isMenuOpen ? [0.1, 0.3, 0.1] : 0.1,
+                  }}
+                  transition={{ duration: 1, repeat: isMenuOpen ? Infinity : 0 }}
+                />
+
+                {/* Orbital particles */}
+                {[0, 120, 240].map((angle, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-1.5 h-1.5 bg-primary rounded-full"
+                    style={{
+                      top: "50%",
+                      left: "50%",
+                      marginTop: "-3px",
+                      marginLeft: "-3px",
+                    }}
+                    animate={{
+                      rotate: isMenuOpen ? 0 : 360,
+                      opacity: isMenuOpen ? 0 : [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                      rotate: { duration: 3, repeat: Infinity, ease: "linear" },
+                      opacity: { duration: 2, repeat: Infinity, delay: i * 0.3 },
+                    }}
+                    initial={{ rotate: angle }}
+                  >
+                    <div
+                      style={{
+                        transform: `translate(16px, 0) rotate(${-angle}deg)`,
+                      }}
+                      className="w-1.5 h-1.5 bg-primary rounded-full"
+                    />
+                  </motion.div>
+                ))}
+
+                {/* Center icon - transforms between hamburger and X */}
+                <div className="relative w-5 h-4 flex flex-col justify-between">
+                  <motion.span
+                    className="w-full h-0.5 bg-primary block rounded-full"
+                    animate={isMenuOpen ? { rotate: 45, y: 7, scaleX: 1.2 } : { rotate: 0, y: 0, scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.span
+                    className="w-full h-0.5 bg-primary block rounded-full"
+                    animate={isMenuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.span
+                    className="w-full h-0.5 bg-primary block rounded-full"
+                    animate={isMenuOpen ? { rotate: -45, y: -7, scaleX: 1.2 } : { rotate: 0, y: 0, scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+              </motion.button>
+            </div>
+          </div>
+        </nav>
+      </motion.header>
+
+      {/* Full Screen Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-background flex items-center justify-center overflow-hidden"
+            initial={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
+            animate={{ clipPath: "circle(150% at calc(100% - 40px) 40px)" }}
+            exit={{ clipPath: "circle(0% at calc(100% - 40px) 40px)" }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           >
-            <motion.div
-              animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.div>
-          </motion.button>
-        </div>
+            {/* Animated background particles */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(30)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-primary/20 rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [0, -30, 0],
+                    opacity: [0.2, 1, 0.2],
+                    scale: [1, 1.5, 1],
+                  }}
+                  transition={{
+                    duration: 3 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                  }}
+                />
+              ))}
+            </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden overflow-hidden bg-background/95 backdrop-blur-xl mt-2 rounded-xl border border-border"
-            >
-              <ul className="flex flex-col gap-2 p-4">
-                {navItems.map((item, index) => {
-                  const isActive = activeSection === item.href.slice(1);
-                  return (
+            {/* Menu Content */}
+            <div className="relative z-10 text-center">
+              <nav>
+                <ul className="space-y-6">
+                  {navItems.map((item, index) => (
                     <motion.li
                       key={item.label}
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: -20, opacity: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                      exit={{ opacity: 0, y: -50, rotateX: 90 }}
+                      transition={{
+                        duration: 0.5,
+                        delay: 0.1 + index * 0.1,
+                        type: "spring",
+                        stiffness: 100,
+                      }}
                     >
-                      <a
+                      <motion.a
                         href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block transition-colors py-3 px-4 rounded-lg ${isActive
-                          ? "text-primary bg-primary/10"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                          }`}
+                        onClick={() => handleNavClick(item.href)}
+                        className="group inline-block"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                       >
-                        <span className="text-primary font-mono text-xs mr-2">0{index + 1}.</span>
-                        {item.label}
-                      </a>
+                        <div className="flex items-center gap-4">
+                          <motion.span
+                            className="text-primary font-mono text-2xl"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.2 + index * 0.1 }}
+                          >
+                            0{index + 1}.
+                          </motion.span>
+                          <span className="text-5xl md:text-7xl font-bold group-hover:text-primary transition-colors duration-300">
+                            {item.label}
+                          </span>
+                        </div>
+                        <motion.div
+                          className="h-1 bg-primary mt-2"
+                          initial={{ scaleX: 0 }}
+                          whileHover={{ scaleX: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      </motion.a>
                     </motion.li>
-                  );
-                })}
-                <motion.li
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: -20, opacity: 0 }}
-                  transition={{ delay: 0.4 }}
-                  className="pt-2"
+                  ))}
+                </ul>
+              </nav>
+
+              {/* Social Links */}
+              <motion.div
+                className="mt-16 flex justify-center gap-6"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+              >
+                <motion.a
+                  href="https://github.com/Ubaid-Sheikh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
                 >
-                  <a
-                    href="/resume.pdf"
-                    target="_blank"
-                    className="inline-block w-full text-center px-4 py-3 bg-primary text-primary-foreground text-sm rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                  >
-                    Resume
-                  </a>
-                </motion.li>
-              </ul>
+                  GitHub
+                </motion.a>
+                <motion.a
+                  href="https://linkedin.com/in/ubaid018"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                  whileHover={{ scale: 1.2, rotate: -5 }}
+                >
+                  LinkedIn
+                </motion.a>
+              </motion.div>
+            </div>
+
+            {/* Close button hint */}
+            <motion.div
+              className="absolute top-8 right-8 text-muted-foreground text-sm font-mono"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              ESC to close
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </motion.header>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

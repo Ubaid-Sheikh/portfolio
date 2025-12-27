@@ -1,183 +1,170 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Folder } from "lucide-react";
+import { Github, Folder, Code2 } from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut" as const,
+      staggerChildren: 0.2,
     },
   },
 };
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.3 });
 
   const featuredProjects = [
     {
-      title: "E-Commerce Platform",
+      title: "AI-Based Code Analyzer",
       description:
-        "Full-stack e-commerce solution with real-time inventory, payment processing via Stripe, and admin dashboard. Built for scale with Redis caching.",
-      tech: ["React", "Node.js", "MongoDB", "Stripe", "Redis"],
-      github: "#",
-      live: "#",
+        "AI-powered code analysis tool that detects bugs, security vulnerabilities, and code quality issues. Features real-time analysis, automated suggestions, and integration with popular IDEs.",
+      tech: ["React", "Python", "OpenAI", "MongoDB", "FastAPI"],
+      github: "https://github.com/Ubaid-Sheikh?tab=repositories",
+      gradient: "from-emerald-500/20 to-teal-500/20",
     },
     {
-      title: "Task Management App",
+      title: "BreaCheck - Password Breach Detector",
       description:
-        "Collaborative project management tool with real-time updates, drag-and-drop interface, and team communication features using WebSockets.",
-      tech: ["Next.js", "Express", "MongoDB", "Socket.io", "TypeScript"],
-      github: "#",
-      live: "#",
+        "Security tool that checks if passwords have been compromised in data breaches. Uses Have I Been Pwned API with secure hashing to protect user privacy while ensuring password safety.",
+      tech: ["Next.js", "Node.js", "API Integration", "Encryption", "JavaScript"],
+      github: "https://github.com/Ubaid-Sheikh?tab=repositories",
+      gradient: "from-cyan-500/20 to-blue-500/20",
     },
     {
-      title: "Social Media Dashboard",
+      title: "Realtime Security Dashboard",
       description:
-        "Analytics dashboard aggregating data from multiple social platforms with interactive charts, scheduled reporting, and custom metrics.",
-      tech: ["React", "Node.js", "GraphQL", "Chart.js", "JWT"],
-      github: "#",
-      live: "#",
+        "Live security monitoring dashboard with real-time threat detection, network traffic analysis, and automated alerts. Features interactive charts and comprehensive security metrics.",
+      tech: ["React", "Node.js", "Socket.io", "Chart.js", "MongoDB"],
+      github: "https://github.com/Ubaid-Sheikh?tab=repositories",
+      gradient: "from-teal-500/20 to-primary/20",
     },
   ];
 
   const otherProjects = [
-    { title: "Weather App", tech: ["React", "API Integration"] },
+    { title: "Youtube Video Downloader", tech: ["Python", "Flask", "yt-dlp"] },
     { title: "Blog Platform", tech: ["Next.js", "MongoDB", "MDX"] },
     { title: "Chat Application", tech: ["Socket.io", "Express", "React"] },
-    { title: "Portfolio Generator", tech: ["React", "Node.js", "PDF"] },
+    { title: "Promptus - Find prompts", tech: ["React", "OpenAI", "MongoDB"] },
   ];
 
   return (
-    <section id="projects" className="py-24 md:py-32" ref={ref}>
-      <div className="container px-6">
+    <section id="projects" className="py-24 md:py-32 relative overflow-hidden section-bg-lines" ref={ref}>
+      <div className="container px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 80, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 0.8 }}
             className="mb-16"
           >
-            <motion.span 
+            <motion.span
               className="text-primary font-mono text-sm mb-4 block"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -50 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
             >
               // Projects
             </motion.span>
-            <motion.h2 
+            <motion.h2
               className="text-3xl md:text-4xl font-bold mb-4"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
             >
               Featured Work
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-muted-foreground max-w-2xl"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
             >
               A selection of projects that showcase my skills and passion for building
             </motion.p>
           </motion.div>
 
-          {/* Featured Projects */}
+          {/* Featured Projects - Minimalist Design */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
-            className="space-y-8 mb-16"
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
           >
             {featuredProjects.map((project, index) => (
               <motion.article
                 key={project.title}
-                variants={cardVariants}
-                whileHover={{ 
-                  y: -5,
-                  boxShadow: "0 25px 50px -12px hsl(175 80% 50% / 0.15)",
-                  borderColor: "hsl(175 80% 50% / 0.3)"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
                 }}
-                className="card-glass rounded-2xl p-6 md:p-8 group border border-transparent cursor-pointer"
+                className="group cursor-pointer"
               >
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
-                  <div className="flex-1">
-                    <motion.div 
-                      className="flex items-center gap-3 mb-4"
-                      initial={{ x: -20, opacity: 0 }}
-                      animate={isInView ? { x: 0, opacity: 1 } : {}}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                    >
-                      <motion.div
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        <Folder className="text-primary" size={20} />
-                      </motion.div>
-                      <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
+                <motion.div
+                  className="relative h-full"
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Main card */}
+                  <div className="relative bg-background/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6 h-full flex flex-col overflow-hidden hover:border-primary/50 transition-all duration-300">
+
+                    {/* Subtle gradient overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    {/* Content */}
+                    <div className="relative z-10 flex flex-col h-full">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-4">
+                        <motion.div
+                          className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300"
+                          whileHover={{ scale: 1.05 }}
+                        >
+                          <Code2 className="text-primary" size={24} />
+                        </motion.div>
+
+                        <div className="flex gap-2">
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-lg bg-background/50 border border-border/50 hover:border-primary/50 transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            aria-label="View on GitHub"
+                          >
+                            <Github size={16} />
+                          </motion.a>
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
                         {project.title}
                       </h3>
-                    </motion.div>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-                    <motion.div 
-                      className="flex flex-wrap gap-2"
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : {}}
-                      transition={{ delay: 0.5 + index * 0.1 }}
-                    >
-                      {project.tech.map((t, techIndex) => (
-                        <motion.span
-                          key={t}
-                          initial={{ opacity: 0, scale: 0 }}
-                          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                          transition={{ delay: 0.6 + index * 0.1 + techIndex * 0.05 }}
-                          whileHover={{ scale: 1.1, backgroundColor: "hsl(175 80% 50% / 0.2)" }}
-                          className="px-3 py-1 text-xs font-mono rounded-full bg-secondary text-muted-foreground"
-                        >
-                          {t}
-                        </motion.span>
-                      ))}
-                    </motion.div>
+
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground mb-4 flex-grow leading-relaxed">
+                        {project.description}
+                      </p>
+
+                      {/* Tech stack */}
+                      <div className="flex flex-wrap gap-2 mt-auto">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2.5 py-1 text-xs font-mono rounded-md bg-secondary/50 text-muted-foreground border border-border/30 hover:border-primary/30 hover:text-primary transition-all duration-200"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex gap-3 md:flex-col">
-                    <motion.a
-                      href={project.github}
-                      className="p-3 rounded-lg border border-border hover:border-primary/50 transition-colors"
-                      aria-label="View source code"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Github size={18} />
-                    </motion.a>
-                    <motion.a
-                      href={project.live}
-                      className="p-3 rounded-lg border border-border hover:border-primary/50 transition-colors"
-                      aria-label="View live demo"
-                      whileHover={{ scale: 1.1, rotate: -5 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <ExternalLink size={18} />
-                    </motion.a>
-                  </div>
-                </div>
+                </motion.div>
               </motion.article>
             ))}
           </motion.div>
@@ -189,7 +176,7 @@ const Projects = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
           >
             <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <motion.span 
+              <motion.span
                 className="text-primary font-mono text-sm"
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
@@ -198,7 +185,7 @@ const Projects = () => {
               </motion.span>
               Other Noteworthy Projects
             </h3>
-            <motion.div 
+            <motion.div
               className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
               variants={containerVariants}
               initial="hidden"
@@ -210,28 +197,35 @@ const Projects = () => {
                   initial={{ opacity: 0, y: 30, scale: 0.9 }}
                   animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
                   transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
-                  whileHover={{ 
-                    y: -8, 
+                  whileHover={{
+                    y: -8,
                     scale: 1.02,
-                    boxShadow: "0 20px 40px -15px hsl(175 80% 50% / 0.2)"
+                    boxShadow: "0 20px 40px -15px hsl(175 80% 50% / 0.2)",
                   }}
-                  className="card-glass rounded-xl p-5 group cursor-pointer border border-transparent hover:border-primary/30"
+                  className="bg-background backdrop-blur-sm rounded-xl p-5 group cursor-pointer border border-border/30 hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
                 >
+                  {/* Hover gradient */}
                   <motion.div
-                    whileHover={{ rotate: 15, scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <Folder className="text-primary mb-3" size={18} />
-                  </motion.div>
-                  <h4 className="font-medium mb-2 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h4>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tech.map((t) => (
-                      <span key={t} className="text-xs text-muted-foreground font-mono">
-                        {t}
-                      </span>
-                    ))}
+                    className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+
+                  <div className="relative z-10">
+                    <motion.div
+                      whileHover={{ rotate: 15, scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <Folder className="text-primary mb-3" size={18} />
+                    </motion.div>
+                    <h4 className="font-medium mb-2 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5">
+                      {project.tech.map((t) => (
+                        <span key={t} className="text-xs text-muted-foreground font-mono">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               ))}
