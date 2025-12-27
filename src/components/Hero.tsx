@@ -27,7 +27,7 @@ const itemVariants = {
 };
 
 const Hero = () => {
-  const roles = ["MERN Developer", "Full-Stack Developer", "React Specialist", "Node.js Expert"];
+  const roles = ["Software Developer", "Full-Stack Developer", "React Specialist", "Node.js Expert"];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -49,7 +49,7 @@ const Hero = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
             </span>
-            <motion.span 
+            <motion.span
               className="text-muted-foreground text-sm font-mono"
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
@@ -61,67 +61,52 @@ const Hero = () => {
 
           {/* Main heading with typing effect */}
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
-              <motion.span 
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <motion.span
                 className="text-foreground inline-block"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                Hi, I'm a{" "}
+                Hi, I'm Ubaid{" "}
               </motion.span>
               <br />
-              <TypingEffect 
+              <TypingEffect
                 words={roles}
                 className="text-gradient font-mono"
               />
             </h1>
           </motion.div>
 
-          <motion.h2
-            variants={itemVariants}
-            className="text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground mb-8"
-          >
-            Full-Stack{" "}
-            <motion.span 
-              className="text-foreground font-medium inline-block"
-              whileHover={{ scale: 1.05, color: "hsl(175, 80%, 50%)" }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              MERN
-            </motion.span>{" "}
-            Developer
-          </motion.h2>
-
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
+            className="text-base md:text-lg text-muted-foreground max-w-2xl mb-12 leading-relaxed"
           >
             I craft modern, scalable web applications using{" "}
-            <motion.span 
+            <motion.span
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}
             >
               MongoDB
             </motion.span>,{" "}
-            <motion.span 
+            <motion.span
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}
             >
               Express
             </motion.span>,{" "}
-            <motion.span 
+            <motion.span
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}
             >
               React
             </motion.span>, and{" "}
-            <motion.span 
+            <motion.span
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}
             >
               Node.js
-            </motion.span>. 
+            </motion.span>.
             Turning complex problems into elegant solutions.
           </motion.p>
 
@@ -146,7 +131,7 @@ const Hero = () => {
               <span className="relative z-10">Get in Touch</span>
             </motion.a>
             <motion.a
-              href="https://github.com"
+              href="https://github.com/Ubaid-Sheikh"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-lg border border-border hover:border-primary/50 transition-colors"
@@ -156,7 +141,7 @@ const Hero = () => {
               <Github size={20} />
             </motion.a>
             <motion.a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/ubaid018"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-lg border border-border hover:border-primary/50 transition-colors"

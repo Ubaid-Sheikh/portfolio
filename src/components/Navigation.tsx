@@ -10,7 +10,7 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
+
       // Detect active section
       const sections = ["about", "skills", "projects", "contact"];
       for (const section of sections) {
@@ -24,7 +24,7 @@ const Navigation = () => {
         }
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -50,22 +50,21 @@ const Navigation = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-lg shadow-background/50" 
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-lg shadow-background/50"
+        : "bg-transparent"
+        }`}
     >
       <nav className="container px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.a 
-            href="#" 
+          <motion.a
+            href="#"
             className="font-mono text-lg font-bold"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.span 
+            <motion.span
               className="text-primary"
               animate={{ rotate: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
@@ -73,7 +72,7 @@ const Navigation = () => {
               {"<"}
             </motion.span>
             dev
-            <motion.span 
+            <motion.span
               className="text-primary"
               animate={{ rotate: [0, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
@@ -95,14 +94,13 @@ const Navigation = () => {
                 >
                   <motion.a
                     href={item.href}
-                    className={`text-sm transition-colors relative group py-2 ${
-                      isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                    }`}
+                    className={`text-sm transition-colors relative group py-2 ${isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                      }`}
                     whileHover={{ y: -2 }}
                   >
                     <span className="text-primary font-mono text-xs mr-1">0{index + 1}.</span>
                     {item.label}
-                    <motion.span 
+                    <motion.span
                       className="absolute -bottom-0 left-0 h-px bg-primary"
                       initial={{ width: isActive ? "100%" : 0 }}
                       animate={{ width: isActive ? "100%" : 0 }}
@@ -121,17 +119,11 @@ const Navigation = () => {
               <motion.a
                 href="/resume.pdf"
                 target="_blank"
-                className="px-4 py-2 border border-primary text-primary text-sm rounded-lg relative overflow-hidden group"
-                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center px-4 py-2 border border-primary text-primary text-sm rounded-lg relative overflow-hidden group isolate transition-all duration-300"
+                whileHover={{ scale: 1.05, backgroundColor: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
                 whileTap={{ scale: 0.95 }}
               >
-                <motion.span
-                  className="absolute inset-0 bg-primary"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <span className="relative z-10 group-hover:text-primary-foreground transition-colors">
+                <span className="relative z-10">
                   Resume
                 </span>
               </motion.a>
@@ -178,11 +170,10 @@ const Navigation = () => {
                       <a
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block transition-colors py-3 px-4 rounded-lg ${
-                          isActive 
-                            ? "text-primary bg-primary/10" 
-                            : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                        }`}
+                        className={`block transition-colors py-3 px-4 rounded-lg ${isActive
+                          ? "text-primary bg-primary/10"
+                          : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                          }`}
                       >
                         <span className="text-primary font-mono text-xs mr-2">0{index + 1}.</span>
                         {item.label}

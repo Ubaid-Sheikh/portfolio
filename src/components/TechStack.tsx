@@ -55,7 +55,7 @@ const TechStack = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <motion.span 
+            <motion.span
               className="text-primary font-mono text-sm mb-4 block"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
@@ -63,7 +63,7 @@ const TechStack = () => {
             >
               // Tech Stack
             </motion.span>
-            <motion.h2 
+            <motion.h2
               className="text-3xl md:text-4xl font-bold mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -71,7 +71,7 @@ const TechStack = () => {
             >
               Technologies I Work With
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-muted-foreground max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : {}}
@@ -94,23 +94,23 @@ const TechStack = () => {
               animate={{ x: ["-100%", "100%"] }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             />
-            
+
             <div className="relative z-10">
-              <motion.div 
+              <motion.div
                 className="flex items-center justify-center gap-2 mb-6"
                 initial={{ opacity: 0, y: -10 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4 }}
               >
-                <motion.span 
+                <motion.span
                   className="text-primary font-mono text-lg"
                   animate={{ rotate: [0, 10, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
                   {"<"}
                 </motion.span>
-                <span className="text-xl font-bold">MERN Stack</span>
-                <motion.span 
+                <span className="text-xl font-bold">Core Tech Stack</span>
+                <motion.span
                   className="text-primary font-mono text-lg"
                   animate={{ rotate: [0, -10, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -118,7 +118,7 @@ const TechStack = () => {
                   {"/>"}
                 </motion.span>
               </motion.div>
-              
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {mernStack.map((tech, index) => (
                   <motion.div
@@ -128,9 +128,9 @@ const TechStack = () => {
                     transition={{ duration: 0.6, delay: 0.5 + index * 0.15, type: "spring" }}
                     className="text-center group"
                   >
-                    <motion.div 
-                      className="w-20 h-20 mx-auto mb-4 rounded-xl bg-background flex items-center justify-center border border-border relative overflow-hidden"
-                      whileHover={{ 
+                    <motion.div
+                      className="w-28 h-20 mx-auto mb-4 rounded-xl bg-background flex items-center justify-center border border-border relative overflow-hidden"
+                      whileHover={{
                         scale: 1.1,
                         borderColor: "hsl(175 80% 50%)",
                         boxShadow: "0 0 30px hsl(175 80% 50% / 0.3)"
@@ -142,14 +142,14 @@ const TechStack = () => {
                         whileHover={{ y: 0 }}
                         transition={{ duration: 0.3 }}
                       />
-                      <motion.span 
+                      <motion.span
                         className="text-2xl font-bold font-mono text-gradient relative z-10"
                         whileHover={{ scale: 1.2 }}
                       >
                         {tech[0]}
                       </motion.span>
                     </motion.div>
-                    <motion.span 
+                    <motion.span
                       className="font-medium"
                       whileHover={{ color: "hsl(175 80% 50%)" }}
                     >
@@ -172,22 +172,22 @@ const TechStack = () => {
               <motion.div
                 key={tech.name}
                 variants={itemVariants}
-                whileHover={{ 
-                  y: -5, 
+                whileHover={{
+                  y: -5,
                   scale: 1.05,
                   transition: { duration: 0.2 }
                 }}
                 whileTap={{ scale: 0.95 }}
                 className="group cursor-pointer"
               >
-                <motion.div 
+                <motion.div
                   className="card-glass rounded-xl p-4 text-center h-full border border-transparent"
-                  whileHover={{ 
+                  whileHover={{
                     borderColor: "hsl(175 80% 50% / 0.3)",
                     boxShadow: "0 10px 30px -10px hsl(175 80% 50% / 0.2)"
                   }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="text-xs text-primary font-mono mb-2"
                     initial={{ opacity: 0.7 }}
                     whileHover={{ opacity: 1 }}

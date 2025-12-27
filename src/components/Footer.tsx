@@ -11,8 +11,8 @@ const Footer = () => {
             viewport={{ once: true }}
             className="text-sm text-muted-foreground font-mono"
           >
-            Designed & Built with{" "}
-            <span className="text-primary">♥</span>
+            Designed and Developed by{" "}
+            <span className="text-primary">Ubaid Sheikh</span>
           </motion.p>
           <motion.p
             initial={{ opacity: 0 }}
