@@ -267,29 +267,46 @@ const Navigation = () => {
 
               {/* Social Links */}
               <motion.div
-                className="mt-16 flex justify-center gap-6"
+                className="mt-16 flex flex-col items-center gap-6"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
               >
+                {/* Resume Button in Menu */}
                 <motion.a
-                  href="https://github.com/Ubaid-Sheikh"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className="inline-flex items-center gap-2 px-8 py-3 border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 font-semibold"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 }}
                 >
-                  GitHub
+                  Download Resume
                 </motion.a>
-                <motion.a
-                  href="https://linkedin.com/in/ubaid018"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                  whileHover={{ scale: 1.2, rotate: -5 }}
-                >
-                  LinkedIn
-                </motion.a>
+
+                <div className="flex gap-6">
+                  <motion.a
+                    href="https://github.com/Ubaid-Sheikh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                  >
+                    GitHub
+                  </motion.a>
+                  <motion.a
+                    href="https://linkedin.com/in/ubaid018"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                    whileHover={{ scale: 1.2, rotate: -5 }}
+                  >
+                    LinkedIn
+                  </motion.a>
+                </div>
               </motion.div>
             </div>
 

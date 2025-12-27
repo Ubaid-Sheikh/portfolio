@@ -16,7 +16,7 @@ const Index = () => {
       {/* Page Loader */}
       <PageLoader />
 
-      <main className="min-h-screen bg-background cursor-none relative">
+      <main className="min-h-screen bg-background md:cursor-none relative">
         {/* Content */}
         <div className="relative z-10">
           <CustomCursor />
