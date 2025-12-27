@@ -14,7 +14,7 @@ const containerVariants = {
 
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.3 });
+  const isInView = useInView(ref, { once: false, margin: "0px", amount: 0.1 });
 
   const featuredProjects = [
     {

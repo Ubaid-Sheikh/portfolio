@@ -105,7 +105,7 @@ const Navigation = () => {
 
               {/* Unique Animated Hamburger Menu Button */}
               <motion.button
-                className="relative z-50 w-12 h-12 flex items-center justify-center"
+                className="relative z-50 w-12 h-12 rounded-full flex items-center justify-center"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -237,24 +237,24 @@ const Navigation = () => {
                         href={item.href}
                         onClick={() => handleNavClick(item.href)}
                         className="group inline-block"
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                           <motion.span
-                            className="text-primary font-mono text-2xl"
+                            className="text-primary font-mono text-sm"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.2 + index * 0.1 }}
                           >
                             0{index + 1}.
                           </motion.span>
-                          <span className="text-5xl md:text-7xl font-bold group-hover:text-primary transition-colors duration-300">
+                          <span className="text-2xl md:text-3xl font-bold group-hover:text-primary transition-colors duration-300">
                             {item.label}
                           </span>
                         </div>
                         <motion.div
-                          className="h-1 bg-primary mt-2"
+                          className="h-0.5 bg-primary mt-1"
                           initial={{ scaleX: 0 }}
                           whileHover={{ scaleX: 1 }}
                           transition={{ duration: 0.3 }}
@@ -310,14 +310,42 @@ const Navigation = () => {
               </motion.div>
             </div>
 
-            {/* Close button hint */}
+            {/* Close button - Desktop: ESC hint, Mobile: X icon */}
             <motion.div
-              className="absolute top-8 right-8 text-muted-foreground text-sm font-mono"
+              className="absolute top-8 right-8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              ESC to close
+              {/* Desktop: ESC text */}
+              <div className="hidden md:block text-muted-foreground text-sm font-mono">
+                ESC to close
+              </div>
+
+              {/* Mobile: X icon button */}
+              <motion.button
+                onClick={() => setIsMenuOpen(false)}
+                className="md:hidden w-10 h-10 rounded-full border border-border/50 flex items-center justify-center hover:border-primary/50 transition-colors"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Close menu"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="text-foreground"
+                >
+                  <path
+                    d="M15 5L5 15M5 5L15 15"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </motion.button>
             </motion.div>
           </motion.div>
         )}

@@ -4,7 +4,7 @@ import { Mail, MapPin, Github, Linkedin, ArrowUpRight } from "lucide-react";
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.3 });
+  const isInView = useInView(ref, { once: false, margin: "0px", amount: 0.1 });
 
   const socials = [
     { icon: Github, label: "GitHub", href: "https://github.com/Ubaid-Sheikh", handle: "@Ubaid-Sheikh" },

@@ -64,18 +64,25 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    cursor: none;
   }
 
-  /* Hide default cursor when custom cursor is active */
-  .cursor-none,
-  .cursor-none * {
-    cursor: none !important;
+  /* Hide default cursor only on desktop (non-touch devices) */
+  @media (pointer: fine) {
+
+    .cursor-none,
+    .cursor-none * {
+      cursor: none !important;
+    }
   }
 
   /* Show default cursor on touch devices */
   @media (pointer: coarse) {
 
+    *,
+    *::before,
+    *::after,
+    body,
+    body *,
     .cursor-none,
     .cursor-none * {
       cursor: auto !important;
