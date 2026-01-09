@@ -4,9 +4,11 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import CustomPageLoader from "@/components/CustomPageLoader";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Code2, Database, Server, Zap } from "lucide-react";
 
 const AboutPage = () => {
+    const navigate = useNavigate();
     const skills = [
         { icon: Code2, label: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
         { icon: Server, label: "Backend", items: ["Node.js", "Express", "REST APIs", "GraphQL"] },
@@ -178,6 +180,10 @@ const AboutPage = () => {
                             </p>
                             <motion.a
                                 href="/contact"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate("/contact");
+                                }}
                                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}

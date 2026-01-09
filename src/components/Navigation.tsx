@@ -72,6 +72,10 @@ const Navigation = () => {
             {/* Logo */}
             <motion.a
               href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/");
+              }}
               className="flex items-center gap-1 text-xl font-bold group"
               whileHover={{ scale: 1.05 }}
             >
@@ -220,7 +224,10 @@ const Navigation = () => {
                     >
                       <motion.a
                         href={item.href}
-                        onClick={() => handleNavClick(item.href)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNavClick(item.href);
+                        }}
                         className="group inline-block"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}

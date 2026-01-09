@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import CustomPageLoader from "@/components/CustomPageLoader";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
     SiMongodb,
     SiExpress,
@@ -24,6 +25,7 @@ import {
 } from "react-icons/si";
 
 const SkillsPage = () => {
+    const navigate = useNavigate();
     const skillCategories = [
         {
             title: "Frontend Development",
@@ -184,6 +186,10 @@ const SkillsPage = () => {
                             </p>
                             <motion.a
                                 href="/contact"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate("/contact");
+                                }}
                                 className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -195,9 +201,9 @@ const SkillsPage = () => {
                 </section>
 
                 <Footer />
-            </div>
+            </div >
             <ScrollToTop />
-        </main>
+        </main >
     );
 };
 
