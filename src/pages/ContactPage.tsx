@@ -4,10 +4,15 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import CustomPageLoader from "@/components/CustomPageLoader";
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState, useRef } from "react";
+import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { toast, Toaster } from "sonner";
 
 const ContactPage = () => {
+    const formRef = useRef<HTMLFormElement>(null);
+    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "ubaidsheikh800@gmail.com";
+
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -16,10 +21,97 @@ const ContactPage = () => {
     });
 
     const [focused, setFocused] = useState<string | null>(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
+
+        // Validate form
+        if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+            toast.error("Please fill in all fields");
+            return;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            // EmailJS configuration from environment variables
+            const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+            const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+            // Debug: Check if env variables are loaded
+            console.log("EmailJS Config:", { serviceId, templateId, publicKey });
+
+            if (!serviceId || !templateId || !publicKey) {
+                throw new Error("EmailJS credentials not found. Please check your .env file.");
+            }
+
+            // Initialize EmailJS with public key
+            emailjs.init(publicKey);
+
+            // Template parameters - match your EmailJS template exactly
+            const templateParams = {
+                name: formData.name,              // {{name}} in template
+                email: formData.email,             // {{email}} in template
+                from_email: formData.email,       // {{from_email}} in template
+                title: formData.subject,          // {{title}} in template
+                message: formData.message,        // {{message}} in template
+                to_email: import.meta.env.VITE_RECIPIENT_EMAIL,
+            };
+
+            console.log("Sending email with params:", templateParams);
+
+            // Send email using EmailJS
+            const result = await emailjs.send(
+                serviceId,
+                templateId,
+                templateParams
+            );
+
+            console.log("EmailJS Response:", result);
+
+            if (result.status === 200) {
+                setIsSuccess(true);
+                toast.success("Message sent successfully! I'll get back to you soon.", {
+                    duration: 5000,
+                });
+
+                // Reset form
+                setFormData({
+                    name: "",
+                    email: "",
+                    subject: "",
+                    message: "",
+                });
+
+                // Reset success state after 3 seconds
+                setTimeout(() => {
+                    setIsSuccess(false);
+                }, 3000);
+            }
+        } catch (error: any) {
+            console.error("EmailJS Error Details:", error);
+            console.error("Error text:", error?.text);
+            console.error("Error status:", error?.status);
+
+            let errorMessage = "Failed to send message. ";
+
+            if (error?.text?.includes("blocked")) {
+                errorMessage += "Please disable your ad blocker and try again.";
+            } else if (error?.status === 400) {
+                errorMessage += "Template configuration error. Please check EmailJS dashboard.";
+            } else {
+                errorMessage += "Please try again or email me directly.";
+            }
+
+            toast.error(errorMessage, {
+                duration: 5000,
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -39,8 +131,8 @@ const ContactPage = () => {
         {
             icon: Mail,
             title: "Email",
-            value: "ubaidsheikh700@gmail.com",
-            link: "mailto:ubaidsheikh700@gmail.com",
+            value: contactEmail,
+            link: `mailto:${contactEmail}`,
         },
         {
             icon: Phone,
@@ -52,6 +144,7 @@ const ContactPage = () => {
 
     return (
         <main className="min-h-screen bg-background relative">
+            <Toaster position="top-right" richColors />
             <CustomPageLoader pageName="Contact" />
             <Navigation />
             <PageHero
@@ -76,7 +169,7 @@ const ContactPage = () => {
                                     <h2 className="text-2xl font-bold mb-2">Let's talk about everything!</h2>
                                     <p className="text-muted-foreground">
                                         Don't like forms? Send me an{" "}
-                                        <a href="mailto:ubaidsheikh700@gmail.com" className="text-primary hover:underline">
+                                        <a href={`mailto:${contactEmail}`} className="text-primary hover:underline">
                                             email
                                         </a>
                                         . 👋
@@ -248,12 +341,36 @@ const ContactPage = () => {
                                     {/* Submit Button */}
                                     <motion.button
                                         type="submit"
-                                        className="group relative inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-xl font-medium overflow-hidden"
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
+                                        disabled={isSubmitting}
+                                        className={`group relative inline-flex items-center gap-2 px-8 py-4 rounded-xl font-medium overflow-hidden transition-all ${isSubmitting || isSuccess
+                                            ? "bg-primary/70 cursor-not-allowed"
+                                            : "bg-primary hover:shadow-lg hover:shadow-primary/20"
+                                            } text-primary-foreground`}
+                                        whileHover={!isSubmitting && !isSuccess ? { scale: 1.02 } : {}}
+                                        whileTap={!isSubmitting && !isSuccess ? { scale: 0.98 } : {}}
                                     >
-                                        <span className="relative z-10">Send Message</span>
-                                        <Send className="relative z-10 group-hover:translate-x-1 transition-transform" size={18} />
+                                        {isSubmitting ? (
+                                            <>
+                                                <Loader2 className="relative z-10 animate-spin" size={18} />
+                                                <span className="relative z-10">Sending...</span>
+                                            </>
+                                        ) : isSuccess ? (
+                                            <>
+                                                <motion.div
+                                                    initial={{ scale: 0 }}
+                                                    animate={{ scale: 1 }}
+                                                    transition={{ type: "spring", stiffness: 200 }}
+                                                >
+                                                    <CheckCircle2 className="relative z-10" size={18} />
+                                                </motion.div>
+                                                <span className="relative z-10">Sent!</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span className="relative z-10">Send Message</span>
+                                                <Send className="relative z-10 group-hover:translate-x-1 transition-transform" size={18} />
+                                            </>
+                                        )}
                                         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary bg-[length:200%_100%] group-hover:bg-[position:100%_0] transition-all duration-500" />
                                     </motion.button>
                                 </form>
