@@ -66,27 +66,28 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Hide default cursor only on desktop (non-touch devices) */
-  @media (pointer: fine) {
-
-    .cursor-none,
-    .cursor-none * {
-      cursor: none !important;
-    }
+  /* Custom cursor color to match aesthetics */
+  * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z" fill="rgb(38, 217, 191)" stroke="rgb(38, 217, 191)" stroke-width="1.5"/></svg>'), auto;
   }
 
-  /* Show default cursor on touch devices */
-  @media (pointer: coarse) {
+  /* Pointer cursor for interactive elements with custom color */
+  a,
+  button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"],
+  .cursor-pointer {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3.5 2L3.5 13.5L7 10L10 16L12 15L9 9L13.5 9L3.5 2Z" fill="rgb(38, 217, 191)" stroke="rgb(38, 217, 191)" stroke-width="1"/></svg>'), pointer;
+  }
 
-    *,
-    *::before,
-    *::after,
-    body,
-    body *,
-    .cursor-none,
-    .cursor-none * {
-      cursor: auto !important;
-    }
+  /* Text cursor for input fields */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  textarea {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="24" viewBox="0 0 16 24" fill="none"><rect x="7" y="0" width="2" height="24" fill="rgb(38, 217, 191)"/><rect x="4" y="0" width="8" height="3" fill="rgb(38, 217, 191)"/><rect x="4" y="21" width="8" height="3" fill="rgb(38, 217, 191)"/></svg>'), text;
   }
 
   ::selection {
@@ -135,10 +136,6 @@
 
   .card-glass {
     @apply bg-card/50 backdrop-blur-sm border border-border;
-  }
-
-  .cursor-none {
-    cursor: none;
   }
 
   /* Subtle section backgrounds */

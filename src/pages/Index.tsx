@@ -6,7 +6,6 @@ import TechStack from "@/components/TechStack";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageLoader from "@/components/PageLoader";
 
@@ -16,10 +15,9 @@ const Index = () => {
       {/* Page Loader */}
       <PageLoader />
 
-      <main className="min-h-screen bg-background md:cursor-none relative">
+      <main className="min-h-screen bg-background relative">
         {/* Content */}
         <div className="relative z-10">
-          <CustomCursor />
           <Navigation />
           <Hero />
           <About />
