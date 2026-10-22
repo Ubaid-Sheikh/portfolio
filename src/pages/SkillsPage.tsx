@@ -22,45 +22,74 @@ import {
     SiPostgresql,
     SiRedis,
     SiSocketdotio,
+    SiSwift,
+    SiPython,
+    SiCplusplus,
+    SiRabbitmq,
+    SiNginx,
+    SiDebian,
+    SiMinio,
+    SiReactquery,
+    SiJsonwebtokens,
 } from "react-icons/si";
 
 const SkillsPage = () => {
     const navigate = useNavigate();
     const skillCategories = [
         {
+            title: "Languages",
+            skills: [
+                { name: "JavaScript (ES6+)", icon: SiJavascript, level: "Expert" },
+                { name: "TypeScript", icon: SiTypescript, level: "Advanced" },
+                { name: "Swift", icon: SiSwift, level: "Advanced" },
+                { name: "Python", icon: SiPython, level: "Intermediate" },
+                { name: "C++", icon: SiCplusplus, level: "Intermediate" },
+            ],
+        },
+        {
             title: "Frontend Development",
             skills: [
-                { name: "React", icon: SiReact, level: "Expert" },
+                { name: "React.js", icon: SiReact, level: "Expert" },
                 { name: "Next.js", icon: SiNextdotjs, level: "Advanced" },
-                { name: "JavaScript", icon: SiJavascript, level: "Expert" },
-                { name: "TypeScript", icon: SiTypescript, level: "Advanced" },
-                { name: "Tailwind CSS", icon: SiTailwindcss, level: "Expert" },
                 { name: "Redux", icon: SiRedux, level: "Advanced" },
+                { name: "Zustand", icon: SiReact, level: "Advanced" },
+                { name: "TanStack Query", icon: SiReactquery, level: "Advanced" },
+                { name: "Tailwind CSS", icon: SiTailwindcss, level: "Expert" },
             ],
         },
         {
             title: "Backend Development",
             skills: [
                 { name: "Node.js", icon: SiNodedotjs, level: "Expert" },
-                { name: "Express", icon: SiExpress, level: "Expert" },
-                { name: "GraphQL", icon: SiGraphql, level: "Intermediate" },
-                { name: "Socket.io", icon: SiSocketdotio, level: "Advanced" },
+                { name: "Express.js", icon: SiExpress, level: "Expert" },
+                { name: "REST APIs", icon: SiNodedotjs, level: "Expert" },
+                { name: "WebSockets", icon: SiSocketdotio, level: "Advanced" },
+                { name: "JWT / OAuth", icon: SiJsonwebtokens, level: "Advanced" },
             ],
         },
         {
-            title: "Database & Storage",
+            title: "Databases & Storage",
             skills: [
+                { name: "PostgreSQL", icon: SiPostgresql, level: "Advanced" },
                 { name: "MongoDB", icon: SiMongodb, level: "Expert" },
-                { name: "PostgreSQL", icon: SiPostgresql, level: "Intermediate" },
-                { name: "Redis", icon: SiRedis, level: "Intermediate" },
+                { name: "Redis", icon: SiRedis, level: "Advanced" },
+                { name: "MinIO", icon: SiMinio, level: "Intermediate" },
             ],
         },
         {
-            title: "DevOps & Tools",
+            title: "Architecture & Infrastructure",
             skills: [
+                { name: "Microservices", icon: SiDocker, level: "Advanced" },
+                { name: "RabbitMQ", icon: SiRabbitmq, level: "Advanced" },
+                { name: "HAProxy", icon: SiNginx, level: "Intermediate" },
+                { name: "Linux / Debian", icon: SiDebian, level: "Advanced" },
                 { name: "Docker", icon: SiDocker, level: "Advanced" },
-                { name: "AWS", icon: SiAmazon, level: "Intermediate" },
-                { name: "Git", icon: SiGit, level: "Expert" },
+            ],
+        },
+        {
+            title: "Mobile",
+            skills: [
+                { name: "Native iOS (Swift)", icon: SiSwift, level: "Advanced" },
             ],
         },
     ];

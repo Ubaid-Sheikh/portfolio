@@ -27,7 +27,7 @@ const itemVariants = {
 };
 
 const Hero = () => {
-  const roles = ["Software Developer", "Full-Stack Developer", "React Specialist", "Node.js Expert"];
+  const roles = ["Software Engineer", "Full-Stack Developer", "iOS Developer", "Node.js Developer"];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -82,18 +82,18 @@ const Hero = () => {
             variants={itemVariants}
             className="text-base md:text-lg text-muted-foreground max-w-2xl mb-12 leading-relaxed"
           >
-            I craft modern, scalable web applications using{" "}
+            I build scalable real-time systems, microservices and native iOS apps using{" "}
             <motion.span
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}
             >
-              MongoDB
+              Node.js
             </motion.span>,{" "}
             <motion.span
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}
             >
-              Express
+              PostgreSQL
             </motion.span>,{" "}
             <motion.span
               className="text-foreground inline-block"
@@ -105,7 +105,7 @@ const Hero = () => {
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}
             >
-              Node.js
+              Swift
             </motion.span>.
             Turning complex problems into elegant solutions.
           </motion.p>

@@ -18,36 +18,36 @@ const Projects = () => {
 
   const featuredProjects = [
     {
-      title: "AI-Based Code Analyzer",
+      title: "Enterprise Email Platform",
       description:
-        "AI-powered code analysis tool that detects bugs, security vulnerabilities, and code quality issues. Features real-time analysis, automated suggestions, and integration with popular IDEs.",
-      tech: ["React", "Python", "OpenAI", "MongoDB", "FastAPI"],
+        "Enterprise email client comparable to Outlook, Thunderbird and Gmail, built by customizing iRedMail and SOGo with a custom ReactJS webmail UI. Includes S/MIME encryption, Zimbra/Exchange mailbox migration, Active Directory sync and a customized admin portal.",
+      tech: ["ReactJS", "Python", "Objective-C", "AngularJS", "Postfix", "Nginx"],
       github: "https://github.com/Ubaid-Sheikh?tab=repositories",
       gradient: "from-emerald-500/20 to-teal-500/20",
     },
     {
-      title: "BreaCheck - Password Breach Detector",
+      title: "Real-Time Collaboration Platform (Web + iOS)",
       description:
-        "Security tool that checks if passwords have been compromised in data breaches. Uses Have I Been Pwned API with secure hashing to protect user privacy while ensuring password safety.",
-      tech: ["Next.js", "Node.js", "API Integration", "Encryption", "JavaScript"],
+        "Slack-like platform with workspaces, channels, messaging and file sharing. Microservices with async event processing and distributed caching, deployed on Debian VMs with HAProxy and PostgreSQL clustering. LiveKit conferencing and a native Swift iOS client.",
+      tech: ["Node.js", "PostgreSQL", "Redis", "RabbitMQ", "MinIO", "LiveKit", "Swift"],
       github: "https://github.com/Ubaid-Sheikh?tab=repositories",
       gradient: "from-cyan-500/20 to-blue-500/20",
     },
     {
-      title: "Realtime Security Dashboard",
+      title: "Cryptocurrency Exchange iOS App",
       description:
-        "Live security monitoring dashboard with real-time threat detection, network traffic analysis, and automated alerts. Features interactive charts and comprehensive security metrics.",
-      tech: ["React", "Node.js", "Socket.io", "Chart.js", "MongoDB"],
+        "Native Swift iOS app for an exchange built on a customized OpenDAX ecosystem. Features wallet management, trading workflows, authentication, market data visualization, portfolio tracking and real-time market updates.",
+      tech: ["Swift", "iOS", "OpenDAX", "REST APIs", "WebSockets"],
       github: "https://github.com/Ubaid-Sheikh?tab=repositories",
       gradient: "from-teal-500/20 to-primary/20",
     },
   ];
 
   const otherProjects = [
-    { title: "Youtube Video Downloader", tech: ["Python", "Flask", "yt-dlp"] },
-    { title: "Blog Platform", tech: ["Next.js", "MongoDB", "MDX"] },
-    { title: "Chat Application", tech: ["Socket.io", "Express", "React"] },
-    { title: "Promptus - Find prompts", tech: ["React", "OpenAI", "MongoDB"] },
+    { title: "TrapShield Dashboard (FYP)", tech: ["React.js", "Node.js", "MongoDB", "Random Forest"] },
+    { title: "Hitechie - Job Portal", tech: ["Node.js", "Express", "MongoDB"] },
+    { title: "Check-in - Location App", tech: ["Node.js", "Backend"] },
+    { title: "Kratos - Live Story Game", tech: ["Node.js", "Backend"] },
   ];
 
   return (
