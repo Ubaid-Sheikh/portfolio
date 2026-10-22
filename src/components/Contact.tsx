@@ -5,7 +5,7 @@ import { Mail, MapPin, Github, Linkedin, ArrowUpRight } from "lucide-react";
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: "0px", amount: 0.1 });
-  const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "ubaidsheikh800@gmail.com";
+  const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "ubaidsheikh700@gmail.com";
 
   const socials = [
     { icon: Github, label: "GitHub", href: "https://github.com/Ubaid-Sheikh", handle: "@Ubaid-Sheikh" },
@@ -111,7 +111,7 @@ const Contact = () => {
             >
               <MapPin size={16} />
             </motion.div>
-            <span>Based in Islamabad, Pakistan</span>
+            <span>Based in Rawalpindi, Pakistan</span>
           </motion.div>
 
           {/* Social Links */}

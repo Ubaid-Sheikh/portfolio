@@ -43,10 +43,10 @@ const About = () => {
   const isInView = useInView(ref, { once: false, margin: "0px", amount: 0.1 });
 
   const highlights = [
-    { icon: Code2, label: "Frontend", description: "React, Next.js, JavaScript" },
-    { icon: Server, label: "Backend", description: "Node.js, Express, REST APIs" },
-    { icon: Database, label: "Database", description: "MongoDB, Mongoose, Redis" },
-    { icon: Zap, label: "DevOps", description: "Docker, AWS, CI/CD" },
+    { icon: Code2, label: "Frontend", description: "React.js, Next.js, TypeScript, Redux" },
+    { icon: Server, label: "Backend", description: "Node.js, Express, WebSockets, Microservices" },
+    { icon: Database, label: "Database", description: "PostgreSQL, MongoDB, Redis, MinIO" },
+    { icon: Zap, label: "Infra & iOS", description: "RabbitMQ, HAProxy, Debian, Swift" },
   ];
 
   return (
@@ -79,19 +79,17 @@ const About = () => {
                 className="space-y-4 text-muted-foreground leading-relaxed"
               >
                 <motion.p variants={itemVariants}>
-                  I'm a passionate full-stack developer with 3+ years of experience
-                  specializing in the MERN stack. I love creating performant,
-                  accessible, and visually appealing web applications.
+                  I'm a software engineer with experience in full-stack web development,
+                  microservices, cloud infrastructure and native iOS development.
+                  I build scalable real-time systems with Node.js, PostgreSQL, Redis, RabbitMQ and Swift.
                 </motion.p>
                 <motion.p variants={itemVariants}>
-                  My journey in web development started with curiosity and has
-                  evolved into a deep understanding of modern JavaScript ecosystems.
-                  I focus on writing clean, maintainable code that scales.
+                  I'm currently a Full Stack Developer (Web + iOS) at QuantumRonics,
+                  building email, collaboration and cryptocurrency exchange products
+                  and deploying them to production.
                 </motion.p>
                 <motion.p variants={itemVariants}>
-                  When I'm not coding, you'll find me exploring new technologies,
-                  contributing to open source, or sharing knowledge with the
-                  developer community.
+                  I hold a Bachelor of Cyber Security from Comsats University, Islamabad.
                 </motion.p>
               </motion.div>
 
@@ -101,9 +99,9 @@ const About = () => {
                 className="flex gap-8 mt-8 pt-8 border-t border-border"
               >
                 {[
-                  { value: "3+", label: "Years Experience" },
-                  { value: "50+", label: "Projects Completed" },
-                  { value: "20+", label: "Happy Clients" },
+                  { value: "2", label: "Companies" },
+                  { value: "7", label: "Projects" },
+                  { value: "2", label: "Platforms (Web + iOS)" },
                 ].map((stat, index) => (
                   <motion.div
                     key={stat.label}

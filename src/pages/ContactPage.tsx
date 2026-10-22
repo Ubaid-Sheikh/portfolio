@@ -11,7 +11,7 @@ import { toast, Toaster } from "sonner";
 
 const ContactPage = () => {
     const formRef = useRef<HTMLFormElement>(null);
-    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "ubaidsheikh800@gmail.com";
+    const contactEmail = import.meta.env.VITE_CONTACT_EMAIL || "ubaidsheikh700@gmail.com";
 
     const [formData, setFormData] = useState({
         name: "",
@@ -125,7 +125,7 @@ const ContactPage = () => {
         {
             icon: MapPin,
             title: "Location",
-            value: "Islamabad, Pakistan",
+            value: "Rawalpindi, Pakistan",
             link: null,
         },
         {

@@ -5,15 +5,16 @@ import ScrollToTop from "@/components/ScrollToTop";
 import CustomPageLoader from "@/components/CustomPageLoader";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Code2, Database, Server, Zap } from "lucide-react";
+import { Code2, Database, Server, Zap, Smartphone, GraduationCap } from "lucide-react";
 
 const AboutPage = () => {
     const navigate = useNavigate();
     const skills = [
-        { icon: Code2, label: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
-        { icon: Server, label: "Backend", items: ["Node.js", "Express", "REST APIs", "GraphQL"] },
-        { icon: Database, label: "Database", items: ["MongoDB", "Mongoose", "Redis", "PostgreSQL"] },
-        { icon: Zap, label: "DevOps", items: ["Docker", "AWS", "CI/CD", "Git"] },
+        { icon: Code2, label: "Languages & Frontend", items: ["JavaScript", "TypeScript", "React.js", "Next.js", "Redux", "Zustand", "TanStack Query", "Tailwind CSS"] },
+        { icon: Server, label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "WebSockets", "JWT/OAuth"] },
+        { icon: Database, label: "Databases & Storage", items: ["PostgreSQL", "MongoDB", "Redis", "MinIO"] },
+        { icon: Zap, label: "Architecture & Infra", items: ["Microservices", "RabbitMQ", "HAProxy", "Linux/Debian", "Docker", "Active Directory"] },
+        { icon: Smartphone, label: "Mobile", items: ["Native iOS (Swift)", "LiveKit", "Push Notifications"] },
     ];
 
     return (
@@ -42,21 +43,20 @@ const AboutPage = () => {
 
                             <div className="text-lg text-muted-foreground space-y-6 leading-relaxed">
                                 <p>
-                                    I'm a passionate full-stack developer based in Islamabad, Pakistan, with over 3 years of experience
-                                    building modern web applications. My journey in tech started with curiosity and has evolved into
-                                    a deep love for creating solutions that make a real impact.
+                                    I'm a software engineer based in Rawalpindi, Pakistan, with experience in full-stack web development,
+                                    microservices architecture, cloud infrastructure and native iOS development. I build scalable
+                                    real-time systems and ship production applications.
                                 </p>
 
                                 <p>
-                                    I specialize in the <strong className="text-foreground">MERN stack</strong> (MongoDB, Express, React, Node.js)
-                                    and have a keen eye for design. I believe that great software is not just about functionality—it's about
-                                    creating experiences that are intuitive, accessible, and delightful to use.
+                                    I work with <strong className="text-foreground">Node.js, PostgreSQL, Redis, RabbitMQ and Swift</strong>, and I
+                                    deploy services on Debian VMs with HAProxy load balancing and PostgreSQL clustering.
+                                    I'm currently a Full Stack Developer (Web + iOS) at QuantumRonics.
                                 </p>
 
                                 <p>
-                                    When I'm not coding, you'll find me exploring new technologies, contributing to open source projects,
-                                    or sharing knowledge with the developer community. I'm always excited to learn and grow, and I love
-                                    tackling challenging problems that push me to think creatively.
+                                    I hold a Bachelor of Cyber Security from Comsats University, Islamabad. I enjoy tackling hard
+                                    problems, exploring new technologies and learning something new on every project.
                                 </p>
                             </div>
                         </motion.div>
@@ -70,9 +70,9 @@ const AboutPage = () => {
                             className="flex flex-wrap justify-center gap-12 md:gap-20 py-12 mb-20 border-y border-border"
                         >
                             {[
-                                { value: "3+", label: "Years Experience" },
-                                { value: "50+", label: "Projects" },
-                                { value: "20+", label: "Clients" },
+                                { value: "2", label: "Companies" },
+                                { value: "7", label: "Projects" },
+                                { value: "2", label: "Platforms (Web + iOS)" },
                             ].map((stat, index) => (
                                 <motion.div
                                     key={stat.label}
@@ -126,6 +126,31 @@ const AboutPage = () => {
                                         </div>
                                     </motion.div>
                                 ))}
+                            </div>
+                        </motion.div>
+
+                        {/* Education & Certifications */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            viewport={{ once: true }}
+                            className="mb-20"
+                        >
+                            <h3 className="text-2xl md:text-3xl font-bold mb-8">Education & Certifications</h3>
+                            <div className="flex gap-6 items-start">
+                                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                    <GraduationCap className="text-primary" size={20} />
+                                </div>
+                                <div>
+                                    <h4 className="text-xl font-semibold">Bachelor of Cyber Security</h4>
+                                    <p className="text-muted-foreground">Comsats University, Islamabad - Sept 2021 - Sept 2025</p>
+                                    <ul className="mt-4 space-y-1 text-muted-foreground">
+                                        <li>CCNAv7: Introduction to Networks</li>
+                                        <li>Microsoft Office Specialist: Word 2016</li>
+                                    </ul>
+                                    <p className="mt-4 text-muted-foreground">Languages: English, Urdu, Punjabi</p>
+                                </div>
                             </div>
                         </motion.div>
 

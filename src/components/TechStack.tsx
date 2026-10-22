@@ -9,10 +9,16 @@ import {
   SiNextdotjs,
   SiTailwindcss,
   SiRedux,
-  SiGraphql,
   SiDocker,
   SiGit,
-  SiAmazon
+  SiTypescript,
+  SiPostgresql,
+  SiRedis,
+  SiRabbitmq,
+  SiSwift,
+  SiPython,
+  SiLinux,
+  SiNginx,
 } from "react-icons/si";
 
 const containerVariants = {
@@ -39,25 +45,27 @@ const TechStack = () => {
   const isInView = useInView(ref, { once: false, margin: "0px", amount: 0.1 });
 
   const technologies = [
-    { name: "MongoDB", category: "Database", icon: SiMongodb },
-    { name: "Express", category: "Backend", icon: SiExpress },
-    { name: "React", category: "Frontend", icon: SiReact },
-    { name: "Node.js", category: "Runtime", icon: SiNodedotjs },
     { name: "JavaScript", category: "Language", icon: SiJavascript },
+    { name: "TypeScript", category: "Language", icon: SiTypescript },
+    { name: "Swift", category: "Language", icon: SiSwift },
+    { name: "Python", category: "Language", icon: SiPython },
     { name: "Next.js", category: "Framework", icon: SiNextdotjs },
-    { name: "Tailwind CSS", category: "Styling", icon: SiTailwindcss },
     { name: "Redux", category: "State", icon: SiRedux },
-    { name: "GraphQL", category: "API", icon: SiGraphql },
+    { name: "Tailwind CSS", category: "Styling", icon: SiTailwindcss },
+    { name: "PostgreSQL", category: "Database", icon: SiPostgresql },
+    { name: "Redis", category: "Cache", icon: SiRedis },
+    { name: "RabbitMQ", category: "Messaging", icon: SiRabbitmq },
+    { name: "HAProxy", category: "Load Balancer", icon: SiNginx },
     { name: "Docker", category: "DevOps", icon: SiDocker },
+    { name: "Linux", category: "Infra", icon: SiLinux },
     { name: "Git", category: "Version Control", icon: SiGit },
-    { name: "AWS", category: "Cloud", icon: SiAmazon },
   ];
 
   const mernStack = [
-    { name: "MongoDB", icon: SiMongodb, color: "hsl(142, 76%, 36%)" },
-    { name: "Express", icon: SiExpress, color: "hsl(0, 0%, 40%)" },
-    { name: "React", icon: SiReact, color: "hsl(193, 95%, 68%)" },
     { name: "Node.js", icon: SiNodedotjs, color: "hsl(97, 71%, 45%)" },
+    { name: "PostgreSQL", icon: SiPostgresql, color: "hsl(210, 50%, 45%)" },
+    { name: "React", icon: SiReact, color: "hsl(193, 95%, 68%)" },
+    { name: "Swift", icon: SiSwift, color: "hsl(15, 90%, 55%)" },
   ];
 
   return (
@@ -93,11 +101,11 @@ const TechStack = () => {
               animate={isInView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              A curated selection of tools and technologies I use to bring ideas to life
+              Languages, frameworks and infrastructure I use for web, backend and iOS development
             </motion.p>
           </motion.div>
 
-          {/* MERN Stack Spotlight */}
+          {/* Core Stack Spotlight */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
