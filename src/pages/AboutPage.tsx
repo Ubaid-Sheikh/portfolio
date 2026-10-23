@@ -61,33 +61,6 @@ const AboutPage = () => {
                             </div>
                         </motion.div>
 
-                        {/* Stats Bar */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                            className="flex flex-wrap justify-center gap-12 md:gap-20 py-12 mb-20 border-y border-border"
-                        >
-                            {[
-                                { value: "2", label: "Companies" },
-                                { value: "7", label: "Projects" },
-                                { value: "2", label: "Platforms (Web + iOS)" },
-                            ].map((stat, index) => (
-                                <motion.div
-                                    key={stat.label}
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    className="text-center"
-                                >
-                                    <div className="text-5xl md:text-6xl font-bold text-gradient mb-2">{stat.value}</div>
-                                    <div className="text-sm text-muted-foreground uppercase tracking-wider">{stat.label}</div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-
                         {/* Skills Section */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}

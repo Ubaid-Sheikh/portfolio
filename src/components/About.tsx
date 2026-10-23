@@ -92,33 +92,6 @@ const About = () => {
                   I hold a Bachelor of Cyber Security from Comsats University, Islamabad.
                 </motion.p>
               </motion.div>
-
-              {/* Stats */}
-              <motion.div
-                variants={itemVariants}
-                className="flex gap-8 mt-8 pt-8 border-t border-border"
-              >
-                {[
-                  { value: "2", label: "Companies" },
-                  { value: "7", label: "Projects" },
-                  { value: "2", label: "Platforms (Web + iOS)" },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.6 + index * 0.1, type: "spring", stiffness: 100 }}
-                  >
-                    <motion.span
-                      className="text-3xl font-bold text-gradient block"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      {stat.value}
-                    </motion.span>
-                    <p className="text-sm text-muted-foreground mt-1">{stat.label}</p>
-                  </motion.div>
-                ))}
-              </motion.div>
             </motion.div>
 
             {/* Right column - Highlight cards */}
