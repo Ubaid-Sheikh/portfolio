@@ -14,7 +14,7 @@ const AboutPage = () => {
         { icon: Server, label: "Backend", items: ["Node.js", "Express.js", "REST APIs", "WebSockets", "JWT/OAuth"] },
         { icon: Database, label: "Databases & Storage", items: ["PostgreSQL", "MongoDB", "Redis", "MinIO"] },
         { icon: Zap, label: "Architecture & Infra", items: ["Microservices", "RabbitMQ", "HAProxy", "Linux/Debian", "Docker", "Active Directory"] },
-        { icon: Smartphone, label: "Mobile", items: ["Native iOS (Swift)", "LiveKit", "Push Notifications"] },
+        { icon: Smartphone, label: "Mobile", items: ["Swift", "LiveKit", "Push Notifications"] },
     ];
 
     return (
@@ -44,14 +44,14 @@ const AboutPage = () => {
                             <div className="text-lg text-muted-foreground space-y-6 leading-relaxed">
                                 <p>
                                     I'm a software engineer based in Rawalpindi, Pakistan, with experience in full-stack web development,
-                                    microservices architecture, cloud infrastructure and native iOS development. I build scalable
+                                    microservices architecture and cloud infrastructure. I build scalable
                                     real-time systems and ship production applications.
                                 </p>
 
                                 <p>
                                     I work with <strong className="text-foreground">Node.js, PostgreSQL, Redis, RabbitMQ and Swift</strong>, and I
                                     deploy services on Debian VMs with HAProxy load balancing and PostgreSQL clustering.
-                                    I'm currently a Full Stack Developer (Web + iOS) at QuantumRonics.
+                                    I'm currently a Full Stack Developer at QuantumRonics.
                                 </p>
 
                                 <p>

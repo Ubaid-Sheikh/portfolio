@@ -46,7 +46,7 @@ const About = () => {
     { icon: Code2, label: "Frontend", description: "React.js, Next.js, TypeScript, Redux" },
     { icon: Server, label: "Backend", description: "Node.js, Express, WebSockets, Microservices" },
     { icon: Database, label: "Database", description: "PostgreSQL, MongoDB, Redis, MinIO" },
-    { icon: Zap, label: "Infra & iOS", description: "RabbitMQ, HAProxy, Debian, Swift" },
+    { icon: Zap, label: "Infra", description: "RabbitMQ, HAProxy, Debian, Docker" },
   ];
 
   return (
@@ -80,11 +80,11 @@ const About = () => {
               >
                 <motion.p variants={itemVariants}>
                   I'm a software engineer with experience in full-stack web development,
-                  microservices, cloud infrastructure and native iOS development.
+                  microservices and cloud infrastructure.
                   I build scalable real-time systems with Node.js, PostgreSQL, Redis, RabbitMQ and Swift.
                 </motion.p>
                 <motion.p variants={itemVariants}>
-                  I'm currently a Full Stack Developer (Web + iOS) at QuantumRonics,
+                  I'm currently a Full Stack Developer at QuantumRonics,
                   building email, collaboration and cryptocurrency exchange products
                   and deploying them to production.
                 </motion.p>

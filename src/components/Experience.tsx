@@ -8,17 +8,17 @@ const Experience = () => {
 
     const experiences = [
         {
-            title: "Full Stack Developer (Web + iOS)",
+            title: "Full Stack Developer",
             company: "QuantumRonics",
             location: "Pakistan",
             period: "Feb 2026 - Present",
             type: "Full-time",
-            description: "Building backend services, real-time systems and native iOS apps for the company's email, collaboration and cryptocurrency exchange products using Node.js, PostgreSQL, Redis, RabbitMQ and Swift.",
+            description: "Building backend services and real-time systems, plus two iOS apps (Swift) for the company's email, collaboration and cryptocurrency exchange products using Node.js, PostgreSQL, Redis and RabbitMQ.",
             highlights: [
                 "Designed microservices and managed production deployments on Debian VMs with HAProxy load balancing and PostgreSQL clustering",
                 "Integrated LiveKit for voice and video conferencing",
                 "Customized the iRedMail/SOGo mail stack and built a custom ReactJS webmail interface",
-                "Built native iOS apps in Swift with REST APIs, authentication, push notifications and real-time updates",
+                "Built two iOS apps in Swift for the company with REST APIs, authentication, push notifications and real-time updates",
             ],
             color: "from-emerald-500/20 to-teal-500/20",
         },

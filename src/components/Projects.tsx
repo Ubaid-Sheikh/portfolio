@@ -26,7 +26,7 @@ const Projects = () => {
       gradient: "from-emerald-500/20 to-teal-500/20",
     },
     {
-      title: "Real-Time Collaboration Platform (Web + iOS)",
+      title: "Real-Time Collaboration Platform",
       description:
         "Slack-like platform with workspaces, channels, messaging and file sharing. Microservices with async event processing and distributed caching, deployed on Debian VMs with HAProxy and PostgreSQL clustering. LiveKit conferencing and a native Swift iOS client.",
       tech: ["Node.js", "PostgreSQL", "Redis", "RabbitMQ", "MinIO", "LiveKit", "Swift"],

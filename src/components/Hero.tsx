@@ -27,7 +27,7 @@ const itemVariants = {
 };
 
 const Hero = () => {
-  const roles = ["Software Engineer", "Full-Stack Developer", "iOS Developer", "Node.js Developer"];
+  const roles = ["Software Engineer", "Full-Stack Developer", "Node.js Developer"];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -82,7 +82,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-base md:text-lg text-muted-foreground max-w-2xl mb-12 leading-relaxed"
           >
-            I build scalable real-time systems, microservices and native iOS apps using{" "}
+            I build scalable real-time systems, microservices and production applications using{" "}
             <motion.span
               className="text-foreground inline-block"
               whileHover={{ y: -2, color: "hsl(175, 80%, 50%)" }}

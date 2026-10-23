@@ -87,9 +87,9 @@ const SkillsPage = () => {
             ],
         },
         {
-            title: "Mobile",
+            title: "Mobile (company projects)",
             skills: [
-                { name: "Native iOS (Swift)", icon: SiSwift, level: "Advanced" },
+                { name: "iOS apps (Swift)", icon: SiSwift, level: "Advanced" },
             ],
         },
     ];
