@@ -41,11 +41,8 @@ const ContactPage = () => {
             const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
             const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-            // Debug: Check if env variables are loaded
-            console.log("EmailJS Config:", { serviceId, templateId, publicKey });
-
             if (!serviceId || !templateId || !publicKey) {
-                throw new Error("EmailJS credentials not found. Please check your .env file.");
+                throw new Error("MISSING_CONFIG");
             }
 
             // Initialize EmailJS with public key
@@ -61,16 +58,12 @@ const ContactPage = () => {
                 to_email: import.meta.env.VITE_RECIPIENT_EMAIL,
             };
 
-            console.log("Sending email with params:", templateParams);
-
             // Send email using EmailJS
             const result = await emailjs.send(
                 serviceId,
                 templateId,
                 templateParams
             );
-
-            console.log("EmailJS Response:", result);
 
             if (result.status === 200) {
                 setIsSuccess(true);
@@ -98,10 +91,14 @@ const ContactPage = () => {
 
             let errorMessage = "Failed to send message. ";
 
-            if (error?.text?.includes("blocked")) {
+            if (error?.message === "MISSING_CONFIG") {
+                errorMessage += "The form is not configured on this site yet. Please email me directly.";
+            } else if (error?.text?.includes("blocked")) {
                 errorMessage += "Please disable your ad blocker and try again.";
             } else if (error?.status === 400) {
-                errorMessage += "Template configuration error. Please check EmailJS dashboard.";
+                errorMessage += `EmailJS rejected the request${error?.text ? `: ${error.text}` : "."}`;
+            } else if (error?.text) {
+                errorMessage += `(${error.text})`;
             } else {
                 errorMessage += "Please try again or email me directly.";
             }
